@@ -1,0 +1,104 @@
+package br.fundatec.tdp;
+
+import java.util.Scanner;
+
+public class funcaoPoupanca {
+	private double saqueP, depositoP;
+	private double transfereParaCC;
+	private ContaCorrente cc;
+	
+	public funcaoPoupanca() {
+	
+	}
+	
+
+	public double getSaqueP() {
+		return saqueP;
+	}
+
+	public void setSaqueP(double saqueP) {
+		this.saqueP = saqueP;
+	}
+
+	public double getDepositoP() {
+		return depositoP;
+	}
+
+	public void setDepositoP(double depositoP) {
+		this.depositoP = depositoP;
+	}
+
+	public double getTransfereParaCC() {
+		return transfereParaCC;
+	}
+
+	public void setTransfereParaCC(double transfereParaCC) {
+		this.transfereParaCC = transfereParaCC;
+	}
+
+	public ContaCorrente getCc() {
+		return cc;
+	}
+
+	public void setCc(ContaCorrente cc) {
+		this.cc = cc;
+	}
+
+	public void saqueP(){
+		Scanner entrada = new Scanner(System.in); 
+		double valorDoSaque; 
+		Poupanca poup = new Poupanca();
+
+		System.out.println(poup.getSaldoP());
+
+		System.out.println("Entre com o valor a ser sacado: ");
+		valorDoSaque = entrada.nextDouble();
+		double saldo = poup.getSaldoP();
+		{
+			if (poup.getSaldoP() > 0 && poup.getSaldoP()> valorDoSaque){
+				saldo = saldo - valorDoSaque;
+				System.out.println("Seu novo saldo é: " + saldo);
+				saldo++;
+			}else {
+				System.out.println("Saldo Insuficiente");
+			} 
+			entrada.close();			
+		}
+	}
+
+	public void depositoP(){
+		Scanner entrada = new Scanner(System.in); 
+		double valorDoDeposito; 
+		Poupanca poup = new Poupanca();
+
+		System.out.println("Entre com o valor a ser depositado: ");
+		valorDoDeposito=entrada.nextDouble();
+
+		double saldo = poup.getSaldoP() + valorDoDeposito;
+
+		System.out.print("Seu novo saldo é: " + saldo);
+
+		entrada.close();
+
+	}
+	public void transfereParaCC(){
+		ContaCorrente cc = new ContaCorrente();
+		Poupanca poup = new Poupanca();
+
+		Scanner entrada = new Scanner(System.in);
+
+		System.out.println("Entre com o valor a transferir: ");
+		double valor = entrada.nextDouble();
+		if (valor < poup.getSaldoP()){
+			double saldoP = poup.getSaldoP() - valor; 
+			double saldoConta = cc.getSaldoC() + valor;
+			System.out.println("Valor transferido. Saldo da Poupança: " + saldoP 
+					+ "\nSaldo Conta Corrente: " + saldoConta);
+
+		}else{
+			System.out.println("Saldo Insuficiente");
+		}
+		entrada.close();
+	}
+
+}
