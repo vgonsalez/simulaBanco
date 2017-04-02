@@ -5,5 +5,84 @@ import java.util.Scanner;
 public class Principal {
 
 	public static void main(String[] args) {
-  
-  }
+		int op; 
+		Scanner entrada = new Scanner(System.in);
+
+		do{
+			System.out.println("1 - Conta Corrente" + "\n2 - Poupanca" + "\n3 - Sair");
+			op = entrada.nextInt();
+			switch (op){
+			case 1:{
+				funcaoCC conta = new funcaoCC();
+				ContaCorrente abre = new ContaCorrente();
+
+				do{
+					System.out.println("1 - Sacar" + "\n2 - Depositar" 
+							+ "\n3 - Saldo" + "\n4 - Transferencia" 
+							+ "\nEscolha uma opcao: ");
+					op = entrada.nextInt();
+
+					switch(op){
+					case 1:{
+						System.out.println(conta.getSaqueC());
+						break;
+					}
+					case 2:{
+						System.out.println(conta.getDepositoC());
+						break;
+					}
+					case 3:{
+						System.out.println(abre.getSaldoC());
+						break;
+					}
+					case 4:{
+						System.out.println(conta.getTransfereParaPoup());
+						break;
+					}
+					}
+
+				}while(op!=4);
+				break;
+			}
+
+			case 2:{
+				funcaoPoupanca menu = new funcaoPoupanca();
+				Poupanca abre = new Poupanca();
+
+				do{
+					System.out.println("1 - Sacar" + "\n2 - Depositar" 
+							+ "\n3 - Saldo" + "\n4 - Transferencia" 
+							+ "\nEscolha uma opcao: ");
+
+					switch(op){
+					case 1: {
+						System.out.println(menu.getSaqueP());
+						break;
+					}
+					case 2:{
+						System.out.println(menu.getDepositoP());
+						break;
+					}
+					case 3:{
+						System.out.println(abre.getSaldoP());
+						break;
+					}
+					case 4:{
+						System.out.println(menu.getTransfereParaCC());
+						break;
+					}
+					}									
+				}while(op!=4);
+			}
+			case 3:{
+				System.out.println("Voce saiu do sistema");
+			}
+
+			}while(op!=3);
+			entrada.close();
+
+
+		}while(op!=3);
+	}
+}
+
