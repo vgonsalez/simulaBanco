@@ -1,0 +1,92 @@
+package br.fundatec.tdp;
+
+import java.util.Scanner;
+
+public class funcaoCC {
+	private ContaCorrente cc;
+	private double transfereParaPoup;
+	private double saqueC, depositoC;
+	
+	public funcaoCC() {
+	
+	}
+	
+	public double getTransfereParaPoup() {
+		return transfereParaPoup;
+	}
+
+	public void setTransfereParaPoup(double transfereParaPoup) {
+		this.transfereParaPoup = transfereParaPoup;
+	}
+
+	public double getSaqueC() {
+		return saqueC;
+	}
+
+	public void setSaqueC(double saqueC) {
+		this.saqueC = saqueC;
+	}
+
+	public double getDepositoC() {
+		return depositoC;
+	}
+
+	public void setDepositoC(double depositoC) {
+		this.depositoC = depositoC;
+	}
+
+	public void saqueC(){
+		Scanner entrada = new Scanner(System.in); 
+		ContaCorrente cc = new ContaCorrente();
+		double valorDoSaque; 
+
+		System.out.println(cc.getSaldoC());
+
+		System.out.println("Entre com o valor a ser sacado: ");
+		valorDoSaque = entrada.nextDouble();
+		double saldo = cc.getSaldoC();
+		{
+			if (cc.getSaldoC() > 0 && cc.getSaldoC()> valorDoSaque){
+				saldo = saldo - valorDoSaque;
+				System.out.println("Seu novo saldo é: " + saldo);
+				saldo++;
+			}else {
+				System.out.println("Saldo Insuficiente");
+			} 
+			entrada.close();			
+		}
+	}
+
+	public void depositoC(){
+		Scanner entrada = new Scanner(System.in); 
+		double valorDoDeposito; 
+
+		System.out.println("Entre com o valor a ser depositado: ");
+		valorDoDeposito=entrada.nextDouble();
+
+		double saldo = cc.getSaldoC() + valorDoDeposito;
+
+		System.out.print("Seu novo saldo é: " + saldo);
+
+		entrada.close();
+	}
+
+	public void transfereParaPoup(){
+		Poupanca poup = new Poupanca();
+
+		Scanner entrada = new Scanner(System.in);
+		
+		System.out.println("Entre com o valor a transferir: ");
+		double valor = entrada.nextDouble();
+		if (valor < cc.getSaldoC()){
+			double saldoC = cc.getSaldoC() - valor; 
+			double saldoConta = poup.getSaldoP() + valor;
+			System.out.println("Valor transferido. Saldo da Poupança: " + saldoC 
+					+ "\nSaldo Conta Corrente: " + saldoConta);
+		}else{
+			System.out.println("Saldo Insuficiente");
+		}
+		entrada.close();
+	}
+
+}
