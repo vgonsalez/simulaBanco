@@ -1,0 +1,28 @@
+package br.fundatec.tdp;
+
+public class Poupanca {
+
+	private int idPoupanca = 456;
+	private double saldoP = 500.90;
+	
+	public Poupanca() {
+
+	}
+
+	public int getIdPoupanca() {
+		return idPoupanca;
+	}
+
+	public void setIdPoupanca(int idPoupanca) {
+		this.idPoupanca = idPoupanca;
+	}
+
+	public double getSaldoP() {
+		return saldoP;
+	}
+
+	public void setSaldoP(double saldoP) {
+		this.saldoP = saldoP;
+	}
+
+}
