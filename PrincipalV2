@@ -1,0 +1,171 @@
+package br.fundatec.tdp;
+
+import java.util.Scanner;
+
+public class Principal {
+
+	public static void main(String[] args) {
+		int op; 
+		double valorDoSaque; 
+		double saldo;
+		Scanner entrada = new Scanner(System.in);
+
+		do{
+			System.out.println("1 - Conta Corrente" + "\n2 - Poupanca" + "\n3 - Sair");
+			op = entrada.nextInt();
+			switch (op){
+			case 1:{
+
+				ContaCorrente cc = new ContaCorrente(1500.00);
+
+				do{
+					System.out.println("1 - Sacar" + "\n2 - Depositar" 
+							+ "\n3 - Saldo" + "\n4 - Transferencia" 
+							+ "\nEscolha uma opcao: ");
+					op = entrada.nextInt();
+
+					switch(op){
+					case 1:{
+						System.out.println(cc.getSaldoC());
+
+						System.out.println("Entre com o valor a ser sacado: ");
+						valorDoSaque = entrada.nextDouble();
+						saldo = cc.getSaldoC();
+						{
+							if (cc.getSaldoC() > 0 && cc.getSaldoC()> valorDoSaque){
+								saldo = saldo - valorDoSaque;
+								System.out.println("Seu novo saldo é: " + saldo);
+								saldo++;
+							}else {
+								System.out.println("Saldo Insuficiente");
+							} 
+							entrada.close();			
+						}
+
+						break;			
+					}
+
+					case 2:{
+						double valorDoDeposito; 
+
+						System.out.println("Entre com o valor a ser depositado: ");
+						valorDoDeposito=entrada.nextDouble();
+
+						saldo = cc.getSaldoC() + valorDoDeposito;
+
+						System.out.print("Seu novo saldo é: " + saldo);
+
+						entrada.close();
+
+						break;
+					}
+					case 3:{
+						System.out.println(cc.getSaldoC());
+						break;
+					}
+					case 4:{
+						Poupanca poup = new Poupanca(500.90);
+
+						System.out.println("Entre com o valor a transferir: ");
+						double valor = entrada.nextDouble();
+						if (valor < cc.getSaldoC()){
+							double saldoC = cc.getSaldoC() - valor; 
+							double saldoConta = poup.getSaldoP() + valor;
+							System.out.println("Valor transferido. Saldo da Poupança: " + saldoC 
+									+ "\nSaldo Conta Corrente: " + saldoConta);
+						}else{
+							System.out.println("Saldo Insuficiente");
+						}
+						entrada.close();
+
+						break;
+					}
+
+					}
+
+				}while(op!=4);
+				entrada.close();
+				break;
+			}
+
+			case 2:{
+				Poupanca menu = new Poupanca(500.9);
+				
+				do{
+					System.out.println("1 - Sacar" + "\n2 - Depositar" 
+							+ "\n3 - Saldo" + "\n4 - Transferencia" 
+							+ "\nEscolha uma opcao: ");
+					op=entrada.nextInt();
+					
+					if(op==1){
+						Poupanca poup = new Poupanca(500.9);
+
+						System.out.println(poup.getSaldoP());
+
+						System.out.println("Entre com o valor a ser sacado: ");
+						valorDoSaque = entrada.nextDouble();
+						saldo = poup.getSaldoP();
+						{
+							if (poup.getSaldoP() > 0 && poup.getSaldoP()> valorDoSaque){
+								saldo = saldo - valorDoSaque;
+								System.out.println("Seu novo saldo é: " + saldo);
+								saldo++;
+							}else {
+								System.out.println("Saldo Insuficiente");
+							} 
+							entrada.close();			
+						}
+					
+					}else if(op==2){
+						double valorDoDeposito; 
+						Poupanca poup = new Poupanca(500.9);
+
+						System.out.println("Entre com o valor a ser depositado: ");
+						valorDoDeposito=entrada.nextDouble();
+
+						saldo = poup.getSaldoP() + valorDoDeposito;
+
+						System.out.print("Seu novo saldo é: " + saldo);
+
+						entrada.close();
+					
+					}else if(op==3){
+						System.out.println(menu.getSaldoP());
+					
+					}else if(op==4){
+						ContaCorrente cc = new ContaCorrente(1500);
+						Poupanca poup = new Poupanca(500.9);
+
+						System.out.println("Entre com o valor a transferir: ");
+						double valor = entrada.nextDouble();
+						if (valor < poup.getSaldoP()){
+							double saldoP = poup.getSaldoP() - valor; 
+							double saldoConta = cc.getSaldoC() + valor;
+							System.out.println("Valor transferido. Saldo da Poupança: " + saldoP 
+									+ "\nSaldo Conta Corrente: " + saldoConta);
+
+						}else{
+							System.out.println("Saldo Insuficiente");
+						}
+						entrada.close();
+					
+					}else{
+						return;
+					}									
+				}while(op!=4);
+				break;
+			}
+			case 3:{
+				System.out.println("Voce saiu do sistema");
+				break;
+			}
+
+
+			}while(op!=3);
+			entrada.close();
+
+
+		}while(op!=3);
+	}
+}
+
