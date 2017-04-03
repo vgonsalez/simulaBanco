@@ -1,0 +1,27 @@
+package br.fundatec.tdp;
+
+public class ContaCorrente {
+
+	private int idConta;
+	private double saldoC; 
+
+	public ContaCorrente(double saldoC) {
+		this.saldoC = saldoC;
+	}
+
+	public int getIdConta() {
+		return idConta;
+	}
+
+	public void setIdConta(int idConta) {
+		this.idConta = idConta;
+	}
+
+	public double getSaldoC() {
+		return saldoC;
+	}
+
+	public void setSaldoC(double saldoC) {
+		this.saldoC = saldoC;
+	}
+}
